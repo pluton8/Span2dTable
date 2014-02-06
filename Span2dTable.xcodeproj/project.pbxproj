@@ -10,7 +10,22 @@
 		14C5AC4B18A4295900DB545C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C5AC4A18A4295900DB545C /* Foundation.framework */; };
 		14C5AC4E18A4295900DB545C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C5AC4D18A4295900DB545C /* main.m */; };
 		14C5AC5218A4295900DB545C /* Span2dTable.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14C5AC5118A4295900DB545C /* Span2dTable.1 */; };
+		14C5AC5A18A429EE00DB545C /* TableSpannerAlg.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C5AC5918A429EE00DB545C /* TableSpannerAlg.m */; };
+		14C5AC6318A42B2400DB545C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C5AC6218A42B2400DB545C /* XCTest.framework */; };
+		14C5AC6918A42B2400DB545C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14C5AC6718A42B2400DB545C /* InfoPlist.strings */; };
+		14C5AC6B18A42B2400DB545C /* Span2dTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C5AC6A18A42B2400DB545C /* Span2dTableTests.m */; };
+		14C5AC7218A42BF000DB545C /* TableSpannerAlg.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C5AC5918A429EE00DB545C /* TableSpannerAlg.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		14C5AC6D18A42B2400DB545C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 14C5AC3F18A4295900DB545C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 14C5AC4618A4295900DB545C;
+			remoteInfo = Span2dTable;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		14C5AC4518A4295900DB545C /* CopyFiles */ = {
@@ -31,6 +46,14 @@
 		14C5AC4D18A4295900DB545C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		14C5AC5018A4295900DB545C /* Span2dTable-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Span2dTable-Prefix.pch"; sourceTree = "<group>"; };
 		14C5AC5118A4295900DB545C /* Span2dTable.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Span2dTable.1; sourceTree = "<group>"; };
+		14C5AC5818A429EE00DB545C /* TableSpannerAlg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSpannerAlg.h; sourceTree = "<group>"; };
+		14C5AC5918A429EE00DB545C /* TableSpannerAlg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSpannerAlg.m; sourceTree = "<group>"; };
+		14C5AC6118A42B2400DB545C /* Span2dTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Span2dTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14C5AC6218A42B2400DB545C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		14C5AC6618A42B2400DB545C /* Span2dTableTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Span2dTableTests-Info.plist"; sourceTree = "<group>"; };
+		14C5AC6818A42B2400DB545C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		14C5AC6A18A42B2400DB545C /* Span2dTableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Span2dTableTests.m; sourceTree = "<group>"; };
+		14C5AC6C18A42B2400DB545C /* Span2dTableTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Span2dTableTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +65,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		14C5AC5E18A42B2400DB545C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14C5AC6318A42B2400DB545C /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -49,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				14C5AC4C18A4295900DB545C /* Span2dTable */,
+				14C5AC6418A42B2400DB545C /* Span2dTableTests */,
 				14C5AC4918A4295900DB545C /* Frameworks */,
 				14C5AC4818A4295900DB545C /* Products */,
 			);
@@ -58,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				14C5AC4718A4295900DB545C /* Span2dTable */,
+				14C5AC6118A42B2400DB545C /* Span2dTableTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				14C5AC4A18A4295900DB545C /* Foundation.framework */,
+				14C5AC6218A42B2400DB545C /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				14C5AC4D18A4295900DB545C /* main.m */,
+				14C5AC5818A429EE00DB545C /* TableSpannerAlg.h */,
+				14C5AC5918A429EE00DB545C /* TableSpannerAlg.m */,
 				14C5AC5118A4295900DB545C /* Span2dTable.1 */,
 				14C5AC4F18A4295900DB545C /* Supporting Files */,
 			);
@@ -84,6 +120,25 @@
 			isa = PBXGroup;
 			children = (
 				14C5AC5018A4295900DB545C /* Span2dTable-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14C5AC6418A42B2400DB545C /* Span2dTableTests */ = {
+			isa = PBXGroup;
+			children = (
+				14C5AC6A18A42B2400DB545C /* Span2dTableTests.m */,
+				14C5AC6518A42B2400DB545C /* Supporting Files */,
+			);
+			path = Span2dTableTests;
+			sourceTree = "<group>";
+		};
+		14C5AC6518A42B2400DB545C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				14C5AC6618A42B2400DB545C /* Span2dTableTests-Info.plist */,
+				14C5AC6718A42B2400DB545C /* InfoPlist.strings */,
+				14C5AC6C18A42B2400DB545C /* Span2dTableTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -108,6 +163,24 @@
 			productReference = 14C5AC4718A4295900DB545C /* Span2dTable */;
 			productType = "com.apple.product-type.tool";
 		};
+		14C5AC6018A42B2400DB545C /* Span2dTableTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14C5AC6F18A42B2400DB545C /* Build configuration list for PBXNativeTarget "Span2dTableTests" */;
+			buildPhases = (
+				14C5AC5D18A42B2400DB545C /* Sources */,
+				14C5AC5E18A42B2400DB545C /* Frameworks */,
+				14C5AC5F18A42B2400DB545C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				14C5AC6E18A42B2400DB545C /* PBXTargetDependency */,
+			);
+			name = Span2dTableTests;
+			productName = Span2dTableTests;
+			productReference = 14C5AC6118A42B2400DB545C /* Span2dTableTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -116,6 +189,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = yes;
+				TargetAttributes = {
+					14C5AC6018A42B2400DB545C = {
+						TestTargetID = 14C5AC4618A4295900DB545C;
+					};
+				};
 			};
 			buildConfigurationList = 14C5AC4218A4295900DB545C /* Build configuration list for PBXProject "Span2dTable" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -130,9 +208,21 @@
 			projectRoot = "";
 			targets = (
 				14C5AC4618A4295900DB545C /* Span2dTable */,
+				14C5AC6018A42B2400DB545C /* Span2dTableTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14C5AC5F18A42B2400DB545C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14C5AC6918A42B2400DB545C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14C5AC4318A4295900DB545C /* Sources */ = {
@@ -140,10 +230,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				14C5AC4E18A4295900DB545C /* main.m in Sources */,
+				14C5AC5A18A429EE00DB545C /* TableSpannerAlg.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		14C5AC5D18A42B2400DB545C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14C5AC6B18A42B2400DB545C /* Span2dTableTests.m in Sources */,
+				14C5AC7218A42BF000DB545C /* TableSpannerAlg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		14C5AC6E18A42B2400DB545C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 14C5AC4618A4295900DB545C /* Span2dTable */;
+			targetProxy = 14C5AC6D18A42B2400DB545C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		14C5AC6718A42B2400DB545C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14C5AC6818A42B2400DB545C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		14C5AC5318A4295900DB545C /* Debug */ = {
@@ -232,6 +351,40 @@
 			};
 			name = Release;
 		};
+		14C5AC7018A42B2400DB545C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Span2dTableTests/Span2dTableTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Span2dTableTests/Span2dTableTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		14C5AC7118A42B2400DB545C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Span2dTableTests/Span2dTableTests-Prefix.pch";
+				INFOPLIST_FILE = "Span2dTableTests/Span2dTableTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -249,6 +402,14 @@
 			buildConfigurations = (
 				14C5AC5618A4295900DB545C /* Debug */,
 				14C5AC5718A4295900DB545C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		14C5AC6F18A42B2400DB545C /* Build configuration list for PBXNativeTarget "Span2dTableTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14C5AC7018A42B2400DB545C /* Debug */,
+				14C5AC7118A42B2400DB545C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
