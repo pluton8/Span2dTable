@@ -11,6 +11,8 @@
 
 @interface Span2dTableTests : XCTestCase
 
+@property (nonatomic, strong) TableSpannerAlg *alg;
+
 @end
 
 @implementation Span2dTableTests
@@ -19,6 +21,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.alg = [TableSpannerAlg new];
 }
 
 - (void)tearDown
@@ -29,8 +32,50 @@
 
 - (void)testInstanceShouldBeCreated
 {
-    TableSpannerAlg *alg = [TableSpannerAlg new];
-    XCTAssertNotNil(alg, @"Instance should be created");
+    XCTAssertNotNil(self.alg, @"Instance should be created");
+}
+
+- (void)testOneRowOneCell {
+    NSArray *data = @[ @[@1] ];
+
+    NSArray *expected = @[ @[@1] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:nil];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testOneRowTwoCells {
+    NSArray *data = @[ @[@1, @2] ];
+
+    NSArray *expected = @[ @[@1, @2] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:nil];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testTwoRowsTwoCells {
+    NSArray *data = @[ @[@1], @[@2] ];
+
+    NSArray *expected = @[ @[@1], @[@2] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:nil];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testExample1 {
+    NSArray *data = @[ @[@1, @2], @[@3, @4, @5] ];
+    NSDictionary *spans = @{ @1: @[@2, @1], @2: @[@1, @3] };
+
+    /*
+     should get:
+     1 2 - -
+     - 3 4 5
+     */
+    NSArray *expected = @[ @[@1, @2, [NSNull null], [NSNull null]],
+                           @[[NSNull null], @3, @4, @5] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
 
 @end
