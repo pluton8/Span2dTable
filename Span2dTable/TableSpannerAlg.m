@@ -30,40 +30,46 @@ PositionMake(NSUInteger row, NSUInteger col)
     CGSize curSize = CGSizeMake(0, 0);
     Position curPos = PositionMake(0, 0);
 
-    NSMutableArray *row0 = data[0];
-    for (NSNumber *num in row0) {
-        NSArray *cellSpan = spanInfo[num];
-        NSUInteger rowspan = 0;
-        NSUInteger colspan = 0;
-        CGSize newSize;
-        if (cellSpan) {
-            rowspan = [cellSpan[0] unsignedIntegerValue] - 1;
-            colspan = [cellSpan[1] unsignedIntegerValue] - 1;
+    for (NSArray *row in data) {
+        CGSize newSize = CGSizeMake(curSize.width, curSize.height + 1);
+        curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
 
-            newSize = CGSizeMake(curSize.width + colspan,
-                    curSize.height + rowspan);
-        } else {
-            newSize = CGSizeMake(curSize.width + 1, curSize.height);
+        for (NSNumber *num in row) {
+            NSArray *cellSpan = spanInfo[num];
+            NSUInteger rowspan = 0;
+            NSUInteger colspan = 0;
+            if (cellSpan) {
+                rowspan = [cellSpan[0] unsignedIntegerValue] - 1;
+                colspan = [cellSpan[1] unsignedIntegerValue] - 1;
+
+                newSize = CGSizeMake(curSize.width + colspan,
+                        curSize.height + rowspan);
+            } else if (curPos.row == 0) {
+                // make the table wider only on the first row
+                newSize = CGSizeMake(curSize.width + 1, curSize.height);
+            }
+
+            curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
+
+            // set the value into current cell
+            r[curPos.row][curPos.col++] = num;
+            // and mark null the spanned cells
+            for (int i = 0; i < colspan; ++i) {
+                r[curPos.row][curPos.col++] = null;
+            }
         }
 
-        [self resizeArray:r fromSize:curSize toSize:newSize];
-        curSize = newSize;
-
-        // set the value into current cell
-        r[curPos.row][curPos.col++] = num;
-        // and mark null the spanned cells
-        for (int i = 0; i < colspan; ++i) {
-            r[curPos.row][curPos.col++] = null;
-        }
+        ++curPos.row;
+        curPos.col = 0;
     }
 
     return r;
 }
 
-- (void)resizeArray:(NSMutableArray *)a fromSize:(CGSize)from toSize:(CGSize)to {
+- (CGSize)resizeArray:(NSMutableArray *)a fromSize:(CGSize)from toSize:(CGSize)to {
     if ((from.width >= to.width) && (from.height >= to.height)) {
         // nothing to resize
-        return;
+        return from;
     }
 
     NSLog(@"resizing %@ to %@", NSStringFromSize(from), NSStringFromSize(to));
@@ -84,6 +90,19 @@ PositionMake(NSUInteger row, NSUInteger col)
             [row addObjectsFromArray:extraCols];
         }
     }
+
+    if (numNewRows > 0) {
+        NSMutableArray *newRow = [NSMutableArray arrayWithCapacity:numNewCols];
+        for (int i = 0; i < to.width; ++i) {
+            [newRow addObject:@0];
+        }
+
+        for (int i = 0; i < numNewRows; ++i) {
+            [a addObject:[NSMutableArray arrayWithArray:newRow]];
+        }
+    }
+
+    return to;
 }
 
 @end

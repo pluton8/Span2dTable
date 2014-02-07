@@ -14,6 +14,8 @@
  * Converts the input table with the span info into a 2d array. Check out the
  * tests for usage examples.
  *
+ * Assumption: the input data is correct (that is, the first row defines the
+ *      width of the table)!
  * Assumption: all numbers are distinct!
  * Assumption: no zeroes in input data!
  */
