@@ -15,6 +15,7 @@
  * tests for usage examples.
  *
  * Assumption: all numbers are distinct!
+ * Assumption: no zeroes in input data!
  */
 - (NSArray *)tableForData:(NSArray *)data andSpanInfo:(NSDictionary *)spanInfo;
 

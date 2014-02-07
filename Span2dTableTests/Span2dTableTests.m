@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "TableSpannerAlg.h"
 
+#define null [NSNull null]
+
 @interface Span2dTableTests : XCTestCase
 
 @property (nonatomic, strong) TableSpannerAlg *alg;
@@ -62,6 +64,26 @@
     XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
 
+- (void)testOneRowTwoSpanCells {
+    NSArray *data = @[ @[@1] ];
+    NSDictionary *spans = @{ @1: @[@1, @3] };
+
+    NSArray *expected = @[ @[@1, null, null] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testOneRowOneAndOneSpanCell {
+    NSArray *data = @[ @[@1, @2] ];
+    NSDictionary *spans = @{ @1: @[@1, @3] };
+
+    NSArray *expected = @[ @[@1, null, null, @2] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+/*
 - (void)testExample1 {
     NSArray *data = @[ @[@1, @2], @[@3, @4, @5] ];
     NSDictionary *spans = @{ @1: @[@2, @1], @2: @[@1, @3] };
@@ -70,12 +92,12 @@
      should get:
      1 2 - -
      - 3 4 5
-     */
+     *
     NSArray *expected = @[ @[@1, @2, [NSNull null], [NSNull null]],
                            @[[NSNull null], @3, @4, @5] ];
 
     NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
     XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
-
+*/
 @end
