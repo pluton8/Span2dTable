@@ -104,6 +104,43 @@
     XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
 
+- (void)testTwoRowsShiftedCell {
+    NSArray *data = @[ @[@1, @2], @[@3] ];
+    NSDictionary *spans = @{ @1: @[@2, @1] };
+
+    NSArray *expected = @[ @[@1, @2], @[null, @3] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testThreeRowsShiftedCell {
+    NSArray *data = @[ @[@1, @2],
+                       @[    @3],
+                       @[    @4] ];
+    NSDictionary *spans = @{ @1: @[@3, @1] };
+
+    NSArray *expected = @[ @[@1,   @2],
+                           @[null, @3],
+                           @[null, @4] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
+- (void)testTwoRowsSpanCols {
+    NSArray *data = @[ @[@1, @2, @3, @4],
+                       @[    @5,     @6] ];
+    NSDictionary *spans = @{ @1: @[@2, @1],
+                             @3: @[@2, @1] };
+
+    NSArray *expected = @[ @[@1,   @2, @3,   @4],
+                           @[null, @5, null, @6] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
 - (void)testExample1 {
     NSArray *data = @[ @[@1, @2], @[@3, @4, @5] ];
     NSDictionary *spans = @{ @1: @[@2, @1], @2: @[@1, @3] };

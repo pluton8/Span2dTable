@@ -65,10 +65,28 @@ PositionMake(NSUInteger row, NSUInteger col)
             r[curPos.row][curPos.col] = num;
 
             curPos.col += colspan;
+            // the new current cell may be null, we need to skip it
+            for (; curPos.col < curSize.width; ++curPos.col) {
+                if (null != r[curPos.row][curPos.col]) {
+                    break;
+                }
+            }
         }
 
+        // move to next line
         ++curPos.row;
         curPos.col = 0;
+
+        // if we have the next row, it may already start with nulls
+        if (curPos.row < curSize.height) {
+            for (NSUInteger colInd = 0; colInd < curSize.width; ++colInd) {
+                if (null == r[curPos.row][colInd]) {
+                    ++curPos.col;
+                } else {
+                    break;
+                }
+            }
+        }
     }
 
     return r;
