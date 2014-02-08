@@ -23,40 +23,48 @@ PositionMake(NSUInteger row, NSUInteger col)
 @implementation TableSpannerAlg
 
 - (NSArray *)tableForData:(NSArray *)data andSpanInfo:(NSDictionary *)spanInfo {
-    NSMutableArray *r = [@[] mutableCopy];
+    NSMutableArray *r = [NSMutableArray array];
 
     const NSNull *null = [NSNull null];
 
-    CGSize curSize = CGSizeMake(0, 0);
     Position curPos = PositionMake(0, 0);
 
+    CGSize minSize = [self minimalSizeOfTableForData:data andSpanInfo:spanInfo];
+    CGSize curSize = [self resizeArray:r fromSize:CGSizeMake(0, 0) toSize:minSize];
+
     for (NSArray *row in data) {
-        CGSize newSize = CGSizeMake(curSize.width, curSize.height + 1);
+        // extend the table down if necessary
+        CGSize newSize = CGSizeMake(curSize.width, MAX(curSize.height, curPos.row + 1));
         curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
 
         for (NSNumber *num in row) {
             NSArray *cellSpan = spanInfo[num];
-            NSUInteger rowspan = 0;
-            NSUInteger colspan = 0;
+            NSUInteger rowspan = 1;
+            NSUInteger colspan = 1;
             if (cellSpan) {
-                rowspan = [cellSpan[0] unsignedIntegerValue] - 1;
-                colspan = [cellSpan[1] unsignedIntegerValue] - 1;
+                rowspan = [cellSpan[0] unsignedIntegerValue];
+                colspan = [cellSpan[1] unsignedIntegerValue];
 
-                newSize = CGSizeMake(curSize.width + colspan,
-                        curSize.height + rowspan);
-            } else if (curPos.row == 0) {
+//                newSize = CGSizeMake(curSize.width + colspan,
+//                        curSize.height + rowspan);
+//            } else if (curPos.row == 0) {
                 // make the table wider only on the first row
-                newSize = CGSizeMake(curSize.width + 1, curSize.height);
+//                newSize = CGSizeMake(curSize.width + 1, curSize.height);
             }
 
-            curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
+//            curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
 
+            // mark null the spanned cells
+            for (int colInd = 0; colInd < colspan; ++colInd) {
+                for (int rowInd = 0; rowInd < rowspan; ++rowInd) {
+                    r[curPos.row + rowInd][curPos.col + colInd] = null;
+                }
+//                r[curPos.row][curPos.col + colInd] = null;
+            }
             // set the value into current cell
-            r[curPos.row][curPos.col++] = num;
-            // and mark null the spanned cells
-            for (int i = 0; i < colspan; ++i) {
-                r[curPos.row][curPos.col++] = null;
-            }
+            r[curPos.row][curPos.col] = num;
+
+            curPos.col += colspan;
         }
 
         ++curPos.row;
@@ -66,15 +74,41 @@ PositionMake(NSUInteger row, NSUInteger col)
     return r;
 }
 
+- (CGSize)minimalSizeOfTableForData:(NSArray *)data
+                        andSpanInfo:(NSDictionary *)spanInfo {
+    CGSize size = CGSizeMake(0, 0);
+
+    NSArray *row0 = data[0];
+    for (NSNumber *num in row0) {
+        // make sure height is at least 1
+        size.height = MAX(size.height, 1);
+
+        NSArray *cellSpan = spanInfo[num];
+        if (cellSpan) {
+            NSUInteger rowspan = [cellSpan[0] unsignedIntegerValue];
+            NSUInteger colspan = [cellSpan[1] unsignedIntegerValue];
+
+            // width is increased always
+            size.width += colspan;
+            // expand height if needed
+            size.height = MAX(size.height, rowspan);
+        } else {
+            ++size.width;
+        }
+    }
+
+    return size;
+}
+
 - (CGSize)resizeArray:(NSMutableArray *)a fromSize:(CGSize)from toSize:(CGSize)to {
     if ((from.width >= to.width) && (from.height >= to.height)) {
         // nothing to resize
         return from;
     }
 
-    NSLog(@"resizing %@ to %@", NSStringFromSize(from), NSStringFromSize(to));
+//    NSLog(@"resizing %@ to %@", NSStringFromSize(from), NSStringFromSize(to));
     const NSUInteger numNewCols = (NSUInteger) (to.width - from.width);
-    const NSUInteger numNewRows = (NSUInteger) (to.height - from.height);
+    NSUInteger numNewRows = (NSUInteger) (to.height - from.height);
 
     if (numNewCols > 0) {
         NSMutableArray *extraCols = [NSMutableArray arrayWithCapacity:numNewCols];
@@ -84,6 +118,7 @@ PositionMake(NSUInteger row, NSUInteger col)
 
         if (a.count == 0) {
             [a addObject:[NSMutableArray array]];
+            --numNewRows;
         }
 
         for (NSMutableArray *row in a) {
