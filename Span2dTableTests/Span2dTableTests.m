@@ -142,19 +142,16 @@
 }
 
 - (void)testExample1 {
-    NSArray *data = @[ @[@1, @2], @[@3, @4, @5] ];
-    NSDictionary *spans = @{ @1: @[@2, @1], @2: @[@1, @3] };
+    NSArray *data = @[ @[@1, @2        ],
+                       @[    @3, @4, @5] ];
+    NSDictionary *spans = @{ @1: @[@2, @1],
+                             @2: @[@1, @3] };
 
-    /*
-     should get:
-     1 2 - -
-     - 3 4 5
-     */
-    NSArray *expected = @[ @[@1, @2, null, null],
-                           @[null, @3, @4, @5] ];
+    NSArray *expected = @[ @[@1,   @2, null, null],
+                           @[null, @3, @4,   @5  ] ];
 
     NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
-//    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
 
 @end
