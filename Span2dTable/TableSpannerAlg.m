@@ -44,22 +44,13 @@ PositionMake(NSUInteger row, NSUInteger col)
             if (cellSpan) {
                 rowspan = [cellSpan[0] unsignedIntegerValue];
                 colspan = [cellSpan[1] unsignedIntegerValue];
-
-//                newSize = CGSizeMake(curSize.width + colspan,
-//                        curSize.height + rowspan);
-//            } else if (curPos.row == 0) {
-                // make the table wider only on the first row
-//                newSize = CGSizeMake(curSize.width + 1, curSize.height);
             }
-
-//            curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
 
             // mark null the spanned cells
             for (int colInd = 0; colInd < colspan; ++colInd) {
                 for (int rowInd = 0; rowInd < rowspan; ++rowInd) {
                     r[curPos.row + rowInd][curPos.col + colInd] = null;
                 }
-//                r[curPos.row][curPos.col + colInd] = null;
             }
             // set the value into current cell
             r[curPos.row][curPos.col] = num;
@@ -124,7 +115,6 @@ PositionMake(NSUInteger row, NSUInteger col)
         return from;
     }
 
-//    NSLog(@"resizing %@ to %@", NSStringFromSize(from), NSStringFromSize(to));
     const NSUInteger numNewCols = (NSUInteger) (to.width - from.width);
     NSUInteger numNewRows = (NSUInteger) (to.height - from.height);
 
