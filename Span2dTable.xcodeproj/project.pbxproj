@@ -54,6 +54,7 @@
 		14C5AC6818A42B2400DB545C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		14C5AC6A18A42B2400DB545C /* Span2dTableTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Span2dTableTests.m; sourceTree = "<group>"; };
 		14C5AC6C18A42B2400DB545C /* Span2dTableTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Span2dTableTests-Prefix.pch"; sourceTree = "<group>"; };
+		14C5AC7918A6CA0D00DB545C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 		14C5AC3E18A4295900DB545C = {
 			isa = PBXGroup;
 			children = (
+				14C5AC7918A6CA0D00DB545C /* LICENSE */,
 				14C5AC4C18A4295900DB545C /* Span2dTable */,
 				14C5AC6418A42B2400DB545C /* Span2dTableTests */,
 				14C5AC4918A4295900DB545C /* Frameworks */,
@@ -404,6 +406,7 @@
 				14C5AC5718A4295900DB545C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14C5AC6F18A42B2400DB545C /* Build configuration list for PBXNativeTarget "Span2dTableTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +415,7 @@
 				14C5AC7118A42B2400DB545C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
