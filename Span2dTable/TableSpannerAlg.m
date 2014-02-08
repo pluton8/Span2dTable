@@ -46,6 +46,10 @@ PositionMake(NSUInteger row, NSUInteger col)
                 colspan = [cellSpan[1] unsignedIntegerValue];
             }
 
+            // extend the table down if necessary
+            newSize = CGSizeMake(curSize.width, MAX(curSize.height, curPos.row + rowspan));
+            curSize = [self resizeArray:r fromSize:curSize toSize:newSize];
+
             // mark null the spanned cells
             for (int colInd = 0; colInd < colspan; ++colInd) {
                 for (int rowInd = 0; rowInd < rowspan; ++rowInd) {

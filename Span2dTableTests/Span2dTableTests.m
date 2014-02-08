@@ -154,4 +154,22 @@
     XCTAssertEqualObjects(actual, expected, @"Result is wrong");
 }
 
+- (void)testExample2 {
+    NSArray *data = @[ @[@1,         @2],
+                       @[@3,     @4    ],
+                       @[        @5    ],
+                       @[        @6, @7] ];
+    NSDictionary *spans = @{ @1: @[@1, @3],
+                             @2: @[@3, @1],
+                             @3: @[@3, @2] };
+
+    NSArray *expected = @[ @[@1,   null, null, @2  ],
+                           @[@3,   null, @4,   null],
+                           @[null, null, @5,   null],
+                           @[null, null, @6,   @7  ] ];
+
+    NSArray *actual = [self.alg tableForData:data andSpanInfo:spans];
+    XCTAssertEqualObjects(actual, expected, @"Result is wrong");
+}
+
 @end
